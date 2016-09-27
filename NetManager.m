@@ -33,10 +33,14 @@
 
 //利用URL和频道index，来请求频道列表
 - (void)setChannelWithChannelIndex:(NSUInteger)channelIndex withUrlString:(NSString *)urlString{
+    
     urlString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet characterSetWithCharactersInString:@"`#%^{}\"[]|\\<> "].invertedSet];
+    
     [self.manager GET:urlString parameters:nil  progress:^(NSProgress * _Nonnull downloadProgress) {}  success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-        NSLog(@"网络请求成功");
+        NSLog(@"网络请求成功 with %lu",(unsigned long)channelIndex);
+        //先清空频道列表
         [[ChannelInfo channelSections][channelIndex] removeAllObjects];
+        
         NSDictionary *channels = responseObject[@"data"];
         NSLog(@"%@",channels[@"rec_chls"]);
         
@@ -49,6 +53,7 @@
         }else{
             //传进来的index为1，则说明是推荐兆赫，此处会根据用户的登录情况来加载推荐兆赫
             NSDictionary *channel = channels[@"res"];
+            
             if ([[channels allKeys] containsObject:@"rec_chls"]) {
                 //如果用户登录，加载登录频道
                 for (NSDictionary *tempRecChannel in channels[@"rec_chls"]){

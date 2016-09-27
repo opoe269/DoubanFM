@@ -41,6 +41,7 @@
         self.window.rootViewController = self.LeftSideVC;
         
         [[UINavigationBar appearance]setBarTintColor:[UIColor colorWithRed:20/255.0 green:155/255.0 blue:213/255.0 alpha:1.0]];
+        NSLog(@"999999999999999");
         
         [self loadChannelSections];
         
@@ -62,9 +63,14 @@
     //待添加
 }
 
-//加载频道分组
+//加载频道分组，此处是加载频道分组的Model
 - (void)loadChannelSections{
+    //更新频道类别数组
     [ChannelInfo updateChannelTitles:@[@"我的兆赫",@"推荐兆赫",@"热门兆赫",@"上升最快"]];
+    
+    //频道数组，channelInfo的类方法channelSections返回一个mutableArray数组,按照代码[ChannelInfo channelSections]数组里已经有了数据
+    //此时将从网络上已经获取到的频道列表数据赋值给channelSections
+    
     NSMutableArray *channelSections = [ChannelInfo channelSections];
     
     //私人频道

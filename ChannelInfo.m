@@ -8,6 +8,7 @@
 
 #import "ChannelInfo.h"
 
+//设置静态变量？
 static NSMutableArray *channelSections;
 static ChannelInfo *currentChannel;
 static NSArray *channelTitles;

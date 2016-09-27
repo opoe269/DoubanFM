@@ -10,4 +10,6 @@
 
 @interface SongPlayerViewController : UIViewController
 
+@property (assign, nonatomic) BOOL isPlaying; //正在播放
+
 @end

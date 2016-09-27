@@ -19,8 +19,9 @@
 @property (copy, nonatomic)NSString *like;
 @property (copy, nonatomic)NSString *url;
 
-//解析返回的歌曲字典
+//解析返回的歌曲字典，从豆瓣API获得的数据
 - (instancetype)initWithDict:(NSDictionary *)dict;
+
 - (instancetype)initWithArray:(NSArray *)array;
 
 + (songInfo *)currentSong;//返回当前歌曲

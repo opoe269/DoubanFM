@@ -13,6 +13,8 @@
 
 #import "PlayerDelegate.h"
 
+
+//播放列表playList 类型
 /*
 b	sid	bye，不再播放，并放回一个新的歌曲列表	长报告
 e	sid	end，当前歌曲播放完毕，但是歌曲队列中还有歌曲	短报告
@@ -60,9 +62,10 @@ u	sid	unrate，歌曲正在播放，标记取消喜欢当前歌曲
 
 #pragma mark - 开始播放
 - (void)startPlay{
-    
+    //播放按钮
+    //当进入player界面时看见这个播放按钮时，歌曲已经开始播放，所以这个时候是 loadingPlayListWithTaye:@"p"
     if ([songInfo currentSongIndex] >= self.appDelegate.playList.count - 1) {
-        [self.networkManager loadingPlayListWithTaye:@"p"]; //p是什么type？
+        [self.networkManager loadingPlayListWithTaye:@"p"]; // p是什么type？ p是正在播放
     }else{
         //下一首歌曲
         [songInfo setCurrentSongIndex:[songInfo currentSongIndex]+1];

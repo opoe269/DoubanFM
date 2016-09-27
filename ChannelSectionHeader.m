@@ -24,7 +24,7 @@
     
     self.chHeaderLabel.font = [UIFont systemFontOfSize:15];
     
-    self.backgroundColor = [UIColor grayColor];
+    self.backgroundColor = [UIColor orangeColor];
     
 }
 

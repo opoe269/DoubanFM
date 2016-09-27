@@ -25,7 +25,7 @@
 
 @property (strong, nonatomic) Player *player; //播放器实例
 
-@property (assign, nonatomic) BOOL isPlaying; //正在播放
+
 //定时器
 @property (strong, nonatomic) NSTimer *timer;
 //歌曲总播放时间

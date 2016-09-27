@@ -83,12 +83,16 @@
     [channelHeader beginRefreshing];
     
 
-    UIButton *sideButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    sideButton.frame = CGRectMake(0, 0, 20, 18);
-    [sideButton setBackgroundImage:[UIImage imageNamed:@"menu"] forState:UIControlStateNormal];
-    [sideButton addTarget:self action:@selector(oprationWithLeftList) forControlEvents:UIControlEventTouchUpInside];
+    UIButton *leftSideButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    leftSideButton.frame = CGRectMake(0, 0, 20, 18);
+    [leftSideButton setBackgroundImage:[UIImage imageNamed:@"menu"] forState:UIControlStateNormal];
+    [leftSideButton addTarget:self action:@selector(oprationWithLeftList) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:leftSideButton];
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:sideButton];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"正在播放"
+                                                                             style:UIBarButtonItemStyleBordered
+                                                                            target:self
+                                                                            action:@selector(openPlayerVC)];
 }
 
 
@@ -115,6 +119,12 @@
     }else{
         [delegate.LeftSideVC closeLeftView];
     }
+}
+
+- (void)openPlayerVC{
+
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    [delegate.navVC pushViewController:self.playerVC animated:YES];
 }
 
 - (void)getChannelInfo{
@@ -173,26 +183,18 @@
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     //2.更新当前频道
     [ChannelInfo updateCurremtChannel:[ChannelInfo channelSections][indexPath.section][indexPath.item]];
-    [self.delegate.player play];
-    //3.重新加载播放列表
-    [self.netManager loadingPlayListWithTaye:@"n"];
     
+#warning 在此处可以设定播放逻辑，若当前已有歌曲正在播放，点击正在播放的频道，则使用 'p' 来更新loadingPlayListWithType
+#warning 上述逻辑待添加
+    
+    
+    //3.重新加载播放列表，'n' 表示 'new' 表示当前播放列表没有歌曲播放。
+    [self.netManager loadingPlayListWithTaye:@"n"];
     
     self.playerVC = [[SongPlayerViewController alloc]initWithNibName:@"SongPlayerViewController" bundle:[NSBundle mainBundle]];
     [self.delegate.navVC pushViewController:self.playerVC animated:YES];
     
     
-    
-    
-    
-    
-    
-    
-    
-//    [self.delegate.LeftSideVC closeLeftView];
-//    SongPlayerViewController *songPlayer = [[SongPlayerViewController alloc]init];
-//    
-//    [self.delegate.navVC pushViewController:songPlayer animated:YES];
 }
 
 @end

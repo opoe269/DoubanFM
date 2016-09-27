@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+//遵循此代理delega的目的为：播放界面与独立播放条同步更新
+
 @protocol PlayerDelegate <NSObject>
 
 @optional
