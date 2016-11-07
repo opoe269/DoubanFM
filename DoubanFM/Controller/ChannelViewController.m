@@ -6,7 +6,7 @@
 //  Copyright © 2015年 王振宇. All rights reserved.
 //
 #import "ChannelViewController.h"
-#import "UINavigationBar+Awesome.h"
+//#import "UINavigationBar+Awesome.h"
 #import "AppDelegate.h"
 #import "SongPlayerViewController.h"
 #import "NetManager.h"

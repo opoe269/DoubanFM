@@ -11,7 +11,7 @@
 #import "ChannelInfo.h"
 #import "songInfo.h"
 
-#import "AFNetworking/AFNetworking.h"
+#import "AFNetworking.h"
 
 @interface NetManager()<UIAlertViewDelegate>
 
